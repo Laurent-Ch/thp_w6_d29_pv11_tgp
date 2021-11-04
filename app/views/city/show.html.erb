@@ -1,0 +1,29 @@
+<div class="row d-flex justify-content-around">
+  <div class="hero-unit">
+    <h1>Dans l'incroyable ville de <%= @city.name %></h1>
+    <p class="text-center">Il s'en passe des choses</p>
+  </div>
+</div>
+
+<div class="d-flex flex-wrap justify-content-center">
+  <% @gossips.each do |gossip|%>
+      <div class="card border-info my-2 mx-3 border-radius rounded" style="width: 18rem;">
+      <div class="card-body">
+      <h5 class="card-title">Potin numéro <%= Gossip.all.index(gossip) + 1 %></h5>
+      <p class="card-text">"<%= gossip.title.capitalize %>"</p>
+      <p class="card-text">Contributeur : <%= User.find(gossip.user_id).first_name %></p>
+      <p class="btn btn-outline-warning"><%= link_to 'Détails du potin', gossip_path(gossip.id) %>
+        <% if current_user %>
+        <% if gossip.liked?(current_user) %>
+        <%= button_to "Like", like_path(gossip), method: "put", disabled: true %> 
+        <% else %> 
+        <%= button_to "Like", like_path(gossip), method: "put" %>
+        <% end %> 
+      <% end %>
+      <p class="btn btn-warning btn-outline-success btn-sm"><%= gossip.likes.count %> <%= (gossip.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+      </div>
+      </div>
+    </p>
+  <% end %>
+</div>
+

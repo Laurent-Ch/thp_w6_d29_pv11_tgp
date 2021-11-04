@@ -1,0 +1,76 @@
+
+    <div class="container d-flex align-middle align-items-center flex-column mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-white mb-5">
+                    <h2 class="card-title font-weight-bold text-center my-4">Découvrez notre Gossip numéro <%= params[:id] %></h2>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="position-relative booking">
+                        <div class="media">
+                            <div class="media-body">
+                                <h5 class="mb-4"><%= @gossip.title.capitalize %>
+                                <span class="badge badge-primary mx-3"></span><span class="badge badge-danger"></span></h5>
+                                <div class="mb-3">
+                                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Contribution :</span>
+                                    <span class="bg-dark text-white"> <%= @gossip.user.first_name %></span>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Date de création:</span>
+                                    <span class="bg-dark text-white"><%= @gossip.created_at.to_datetime.strftime("%b %d, %Y") %>
+                                    </span>
+                                </div>
+
+                                <div class="mb-5">
+                                    <span class="mr-2 d-block d-sm-inline-block mb-1 mb-sm-0">Contenu du gossip:</span>
+                                    <span class="bg-dark text-white"><%= @gossip.content %>
+                                    </span>
+                                </div>
+                                <% if current_user %>
+                                    <% if @gossip.liked?(current_user) %>
+                                    <%= button_to "Like", like_path(@gossip), method: "put", disabled: true %>
+                                    <% else %>
+                                    <%= button_to "Like", like_path(@gossip), method: "put" %>
+                                    <% end %>
+                                <% end %>
+                                <p class="btn btn-warning btn-outline-success btn-sm"><%= @gossip.likes.count %> <%= (@gossip.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+                                <br>
+                                <p class="btn btn-warning btn-outline-info"><%= link_to 'Profil de la commère', profile_path(@gossip.user_id) %></p>
+                                <% if current_user %>
+                                    <p class="btn btn-warning btn-outline-warning"><%= link_to 'Editer ce potin', edit_gossip_path(@gossip.id) %></p>
+                                <% end %>
+                                <p class="btn btn-warning btn-outline-warning"> <%= link_to "Effacer ce potin", gossip_path(@gossip), method: :delete, data: { confirm: "Sûr ? Votre sentence est irrévocable !" } %></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+            </div>
+
+
+    <div class="container d-flex align-middle align-items-center flex-column">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-white mb-5">
+                    <h4 class="font-weight-bold text-center my-4">Découvrez les commentaires</h4>
+                        <br><p class="btn btn-warning btn-outline-warning"><%= link_to 'Ecrire un commentaire', new_gossip_comment_path(@gossip.id) %></p>
+                        <div class="d-flex flex-wrap justify-content-center">
+                            <% @comments.each do |comment|%>
+                                <div class="card border-info my-2 mx-3 border-radius rounded" style="width: 18rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title"><%= comment.content %></h5>
+                                    <hr class="solid">
+                                    <h5 class="card-title">Posté par: <%= comment.user.first_name %></h5>
+                                    <p class="btn btn-outline-warning"><%= link_to 'Editer', edit_gossip_comment_path(@gossip, comment) %>
+                                    <p class="btn btn-warning btn-outline-warning"> <%= link_to "Effacer ce commentaire", gossip_comment_path(@gossip, comment), method: :delete, data: { confirm: "Sûr ? Votre sentence est irrévocable !" } %></p>
+
+                                </div>
+                            </div>
+                        </p>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>

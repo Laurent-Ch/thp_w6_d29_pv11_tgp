@@ -1,0 +1,53 @@
+<section class="mx-auto" style="width: 500px;">
+
+<div class="row d-flex justify-content-around">
+
+<!--Grid column-->
+<div class="col-md-9 mb-md-0 mb-5">
+<br>
+<h2 class="h3-responsive font-weight-bold text-center my-4">A toi d'éditer notre potin <%= @gossip.title %></h2>
+            <%= form_tag url_for(action: 'update'), method: 'patch', class: 'contact-form', id: 'contact-form' do %>        
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+                        <div class="md-form mb-0 form-group">
+                          <%= label_tag :gossip_title, "Annonce la couleur" %>
+                          <%= text_field_tag :gossip_title , nil, class: 'form-control' , value: @gossip.title %>
+                        </div>
+                    </div>
+
+                    <!--Grid column-->
+                </div>
+
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0 form-group">
+                        <%= label_tag :gossip_content, "Ton plus grand secret " %>
+                        <%= text_field_tag :gossip_content , nil, class: 'form-control', value: @gossip.content %>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0 form-group">
+                        <%= label_tag "Quelle catégorie ?" %>
+                        <%= select nil, 'tag', Tag.all.collect { |t| [ t.title, t.id ] }, { include_blank: true } , class: 'form-control' %>
+                        </div>
+                    </div>
+                </div>
+
+            <br>
+
+                <div class="text-center text-md-left">
+                  <%= submit_tag 'Editer le potin', class: 'btn btn-primary form-control' %>
+                </div>
+          
+                <div class="status"></div>
+          <% end %>
+
+          </section>

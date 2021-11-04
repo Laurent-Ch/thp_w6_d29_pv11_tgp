@@ -1,0 +1,12 @@
+<h2 class="font-weight-bold text-center my-4">Découvrez toutes nos commères</h2></div>
+<div class="d-flex flex-wrap justify-content-center">
+  <% User.all.each do |user|%>
+  <div class="card border-info my-2 mx-3 border-radius rounded" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= user.first_name.capitalize %> <%= user.last_name.capitalize %></h5>
+      <p class="btn btn-outline-warning"><%= link_to 'Profil', profile_path(user.id) %>
+    </div>
+  </div>
+  </p>
+  <% end %>
+  </div>

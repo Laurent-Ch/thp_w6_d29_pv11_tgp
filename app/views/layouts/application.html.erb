@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TGP</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/pulse/bootstrap.min.css" integrity="sha384-L7+YG8QLqGvxQGffJ6utDKFwmGwtLcCjtwvonVZR/Ba2VzhpMwBz51GaXnUsuYbj" crossorigin="anonymous">
+  </head>
+
+  <body>
+  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark sticky-top" >
+    <%= link_to "The Gossip Project", home_index_path , class: "nav-link navbar-brand" %>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item active">
+     <%= link_to "Accueil", home_index_path , class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+   <%= link_to "Villes", city_index_path , class: "nav-link"  %>
+  </li>
+  <li class="nav-item">
+   <%= link_to "Utilisateurs", profile_index_path , class: "nav-link"  %>
+  </li>
+    <li class="nav-item">
+   <%= link_to "Equipe", team_index_path , class: "nav-link"  %>
+  </li>
+  <li class="nav-item">
+   <%= link_to "Nous contacter", contact_index_path , class: "nav-link" %>
+  </li>
+</ul>
+
+<form class="form-inline my-2 my-lg-0 ">
+
+<% if current_user %>
+    <button class="btn btn-dark text-white my-2 my-sm-0"><%= link_to "Se déconnecter", session_path(:user_id), method: :delete, data: { confirm: "Prêt à vous déconnecter ?" } %></button>
+<% else %>
+    <button class="btn btn-dark text-white my-2 my-sm-0"><%= link_to "Se connecter", new_session_path %></button>
+    <button class="btn bg-secondary  my-2 my-sm-0"><%= link_to 'Créer un compte', new_profile_path %></button>
+<% end %>
+  </div>
+</form>
+
+</div>
+</nav>
+<div class="align-self-center ">
+<% flash.each do |name, msg| %>
+  <div class='alert alert-<%= name %> text-center'>
+  <%= msg %>
+<% end %>  
+</div>
+
+<%= yield %>
+
+
+  </body>
+</html>

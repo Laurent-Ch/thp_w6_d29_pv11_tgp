@@ -1,0 +1,104 @@
+
+<section class="mx-auto" style="width: 500px;">
+
+<div class="row d-flex justify-content-around">
+
+<!--Grid column-->
+<div class="col-md-9 mb-md-0 mb-5">
+<br>
+<h2 class="h3-responsive font-weight-bold text-center my-4">Création de compte</h2>
+            <%= form_tag url_for(action: 'create'), method: 'post', class: 'contact-form', id: 'contact-form' do %>        
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+                        <div class="md-form mb-0 form-group">
+                          <%= label_tag :user_first_name, "Prénom" %>
+                          <%= text_field_tag :user_first_name , nil, class: 'form-control'%>
+                        </div>
+                    </div>
+
+                    <!--Grid column-->
+
+                </div>
+
+                   <!--Grid row-->
+                   <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0 form-group">
+                        <%= label_tag :user_last_name, "Nom" %>
+                        <%= text_field_tag :user_last_name , nil, class: 'form-control' %>
+                      </div>
+                    </div>
+                   </div>
+
+                   <!--Grid row-->
+                   <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0 form-group">
+                        <%= label_tag :user_description, "Toi en une phrase" %>
+                        <%= text_field_tag :user_description , nil, class: 'form-control' %>
+                      </div>
+                    </div>
+                   </div>
+
+					    			<div class="row">
+					   		 			<div class="col-md-12">
+						 		 				<div class="md-form mb-0 form-group">
+						 							<%= label_tag :user_age, "Age" %>
+													<%= text_field_tag :user_age , nil, class: 'form-control', type: 'number' %>
+												</div>
+											</div>
+				    				</div>
+
+					    			<div class="row">
+					   		 			<div class="col-md-12">
+						 		 				<div class="md-form mb-0 form-group">
+						 							<%= label_tag :user_email, "Email" %>
+													<%= text_field_tag :user_email , nil, class: 'form-control' %>
+												</div>
+											</div>
+				    				</div>
+
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0 form-group">
+                          <%= label_tag "Ville" %><br>
+                          <%= select nil, 'city', City.all.collect { |u| [ u.name, u.id ] }, { include_blank: true } , class: 'form-control' %>
+                        </div>
+                    </div>
+                </div>
+
+								<div class="row">
+								<div class="col-md-12">
+									<div class="md-form mb-0 form-group">
+									 <%= label_tag :user_password, "Mot de passe" %>
+									<%= text_field_tag :user_password , nil, class: 'form-control', type: 'password', id: 'myInput' %>
+                  <input type="checkbox" onclick="myFunction()">Show Password
+								</div>
+							</div>
+						</div>
+            <script>
+            function myFunction() {
+              var x = document.getElementById("myInput");
+              if (x.type === "password") {
+                x.type = "text";
+              } else {
+                x.type = "password";
+              }
+            }
+            </script>
+            <br>
+
+                <div class="text-center text-md-left">
+                  <%= submit_tag 'Valider', class: 'btn btn-primary form-control' %>
+                </div>
+          
+                <div class="status"></div>
+          <br>
+          <% end%>
+
+          </section>
