@@ -35,3 +35,7 @@ _bon goût exigé_
 *et c'est parti !*
 
 **Go la team Bréguette**
+
+
+# Note correction
+Reprendre la sécurité du like et l'utiliser pour unlike avec un bouton spécifique (switch).

@@ -20,5 +20,6 @@ Rails.application.routes.draw do
   end
   resources :session, only: %i[new create destroy]
 
+  # ressources :like
   put '/gossip/:id/like', to: 'gossip#like', as: 'like'
 end
