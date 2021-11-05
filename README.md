@@ -38,4 +38,4 @@ _bon goût exigé_
 
 
 # Note correction
-Reprendre la sécurité du like et l'utiliser pour unlike avec un bouton spécifique (switch).
+Reprendre la sécurité du like et l'utiliser pour unlike avec un bouton spécifique (switch). Cela peut aussi permettre de cacher les boutons pour un utilisateur non connecté.
