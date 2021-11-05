@@ -7,7 +7,8 @@ class SessionController < ApplicationController
     user = User.find_by(email: params[:user_email])
 
     if user && user.authenticate(params[:user_password])
-      session[:user_id] = user.id
+      log_in(user)
+      remember(user)
       redirect_to root_path, success: 'Bienvenue !'
 
     else
@@ -17,7 +18,9 @@ class SessionController < ApplicationController
   end
 
   def destroy
-    session.delete(:user_id)
+    # session.delete(:user_id)
+    user = current_user
+    log_out(user)
     redirect_to root_path
   end
 end

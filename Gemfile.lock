@@ -83,7 +83,7 @@ GEM
     ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
-    i18n (1.8.10)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     io-like (0.3.1)
     jbuilder (2.11.2)
@@ -104,9 +104,9 @@ GEM
     minitest (5.14.4)
     msgpack (1.4.2)
     nio4r (2.5.8)
-    nokogiri (1.12.5-arm64-darwin)
-      racc (~> 1.4)
     nokogiri (1.12.5-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     parallel (1.21.0)
     parser (3.0.2.0)
@@ -214,8 +214,8 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
-  arm64-darwin-20
   x86_64-darwin-18
+  x86_64-linux
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
